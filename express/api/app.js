@@ -6,19 +6,15 @@ class Contenedor {
     this.newFile = fileName
   }
 
-  // método adicional para guardar datos
   async saveData(data) {
     try {
       await fs.promises.writeFile(this.newFile, JSON.stringify(data, null, 2))
-    } catch (err) {
-      console.log("error escritura en archivo!", err)
+    } catch (error) {
+      console.log("Error", error)
     }
   }
 
   async save(item) {
-    // Traer todos los productos usando el método getAll.
-    // Si es undefined porque no existe el archivo asigna un array vacío a través
-    // del operador || para que length no de error
     const productsArray = (await this.getAll()) || [];
     try {
       let id = 0;
@@ -28,10 +24,10 @@ class Contenedor {
       const newItem = { ...item, timestamp: Date.now(), id: id }
       productsArray.push(newItem)
       await this.saveData(productsArray)
-      console.log(`producto ${item.product} ingresado ok!`)
+      console.log(`producto ${item.product} ingresado!`)
       return newItem
-    } catch (err) {
-      console.log("error escritura en archivo!", err)
+    } catch (error) {
+      console.log("Error", error)
     }
   }
 
@@ -40,8 +36,8 @@ class Contenedor {
     try {
       const productById = productsArray.find((product) => product.id === id)
       return productById || null
-    } catch (err) {
-      console.log("Error, ", err)
+    } catch (error) {
+      console.log("Error", error)
     }
   }
 
@@ -63,8 +59,8 @@ class Contenedor {
         (product) => product.id !== id
       )
       this.saveData(filteredProducts)
-    } catch (err) {
-      console.log("Error, ", err)
+    } catch (error) {
+      console.log("Error", error)
     }
   }
 
@@ -72,8 +68,8 @@ class Contenedor {
     try {
       this.saveData([]);
       console.log("Productos eliminados!");
-    } catch (err) {
-      console.log("Error, productos no eliminados!", err)
+    } catch (error) {
+      console.log("Error, productos no eliminados!", error)
     }
   }
 }

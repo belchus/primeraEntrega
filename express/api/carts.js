@@ -8,19 +8,16 @@ class Cart {
     this.newFile = fileName
   }
 
-  // método adicional para guardar datos
   async saveData(data) {
     try {
       await fs.promises.writeFile(this.newFile, JSON.stringify(data, null, 2))
-    } catch (err) {
-        console.log("error escritura en archivo!", err)
+    } catch (error) {
+        console.log("error!", error)
     }
   }
 
   async save() {
-    // Traer todos los carritos usando el método getAll.
-    // Si es undefined porque no existe el archivo asigna un array vacío a través
-    // del operador || para que length no de error
+   
     const cartsArray = (await this.getAll()) || []
     try {
       let id = 0
@@ -30,10 +27,10 @@ class Cart {
       const newItem = { timestamp: Date.now(), id: id, productos: [] }
       cartsArray.push(newItem)
       await this.saveData(cartsArray)
-      console.log(`Carrito con id ${id} guardado ok!`)
+      console.log(`Carrito  ${id} guardado`)
       return { id }
-    } catch (err) {
-        console.log("error escritura en archivo!", err)
+    } catch (error) {
+        console.log("error", error)
     }
   }
 
@@ -42,8 +39,8 @@ class Cart {
     try {
       const cartById = cartsArray.find((cart) => cart.id === id)
       return cartById || null
-    } catch (err) {
-        console.log("Error, ", err)
+    } catch (error) {
+        console.log("Error", error)
     }
   }
 
@@ -52,7 +49,7 @@ class Cart {
       const content = await fs.promises.readFile(this.newFile)
       const contentArray = JSON.parse(content)
       return contentArray
-    } catch (err) {
+    } catch (error) {
         console.log("Archivo vacío")
         return 0
     }
@@ -68,10 +65,10 @@ class Cart {
             await this.saveData(cartsArray)
             return cartsArray[cartToUpdate]
         } else {
-            return `Producto con id ${productId} no existe`
+            return `Producto ${productId} no existe`
         }
-    } catch (err) {
-        console.log('Error, ', err)
+    } catch (error) {
+        console.log('Error, ', error)
     }
   }
 
@@ -85,10 +82,10 @@ class Cart {
           await this.saveData(cartsArray)
           return cartsArray[cartToUpdate]
         } else {
-            return `Producto con id ${productId} no existe en carrito`
+            return `Producto  ${productId} no existe `
         }
-    } catch (err) {
-        console.log('Error, ', err)
+    } catch (error) {
+        console.log('Error, ', error)
     }
   }
  
@@ -99,12 +96,12 @@ class Cart {
       if (cartToUpdate !== -1) {
         const filteredCarts = cartsArray.filter(cart => cart.id !== id)
         this.saveData(filteredCarts)
-        return `Carrito con id ${id} borrado`
+        return `Carrito  ${id} eliminado`
       } else {
-          return `Carrito con id ${id} no existe`
+          return `Carrito  ${id} no existe`
       } 
-    } catch (err) {
-        console.log("Error, ", err)
+    } catch (erorr) {
+        console.log("Error, ", error)
     }
   }
 }

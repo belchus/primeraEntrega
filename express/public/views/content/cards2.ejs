@@ -1,0 +1,39 @@
+
+
+<section id='productsCards'>
+
+    <h2>Listado de productos</h2>
+
+    <% if (productos) { %>
+        <div class='cardContainer'>
+            <% misProd.forEach(function(product) { %>
+                <div id='<%= product.id %>'>
+                    <input value='<%= product.product %>'>
+                    <div class='priceContainer'>
+                        <span>$ </span>
+                        <input class='cardInput price' value='<%= product.price %>'>
+                    </div>
+                    <div class='thumbContainer'>
+                        <img class='thumbnail' src='<%= product.thumbnail %>' alt='imagen producto' width='50px'>
+                    </div>
+                    <input class='cardInput descriptionInput' value='<%= product.description %>'>
+                    <div class="stockContainer">
+                        <span>Stock: </span>
+                        <input class='cardInput stock' value='<%= product.stock %>'>
+                    </div>
+                    <div class='buyBtnContainer'>
+                        <button class='buyBtn'>Agregar al Carrito</button>
+                    </div>
+                    <div class='actionBtnsContainer'>
+                        <button class='updateBtn'>Actualizar</button>
+                        <button class='deleteBtn'>Eliminar</button>
+                    </div>
+                    <input class='codeInput' type='hidden' value='<%= product.code %>'>
+                </div>
+            <% }) %>
+        </div>
+    <% } else { %>
+        <p class='link'>No se encontraron productos</p>
+    <% } %>
+
+</section>

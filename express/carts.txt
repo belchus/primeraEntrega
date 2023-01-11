@@ -1,0 +1,12 @@
+[
+  {
+    "timestamp": 1673395004322,
+    "id": 1,
+    "productos": []
+  },
+  {
+    "timestamp": 1673395372428,
+    "id": 2,
+    "productos": []
+  }
+]

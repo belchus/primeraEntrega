@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang='es'>
+
+    <head>
+
+        <%- include('./header') %>
+        
+    </head>
+
+    <body>
+
+        <div class='cartsContainer'>
+
+            <h2>Lista de compra</h2>
+
+            <a href='#' class='addCart'>Agregar carrito</a>
+
+            <nav class='cartsNav'>
+                <ul class='cartsList'>
+                    <% if (cartsQty) { %>
+                        <% allCarts.forEach(function(cart) { %>
+                            <li class='cartLi'><a class='cartLink' id='<%= cart.id %>' href='#'>Carrito <%= cart.id %></li></a>
+                        <% }) %>
+                    <% } else { %>
+                            <h2>No existe otro carrito</h2>
+                    <% } %>
+                </ul>
+            </nav>
+
+            <div class='cartProducts'>
+                <div class='cartName'></div>
+                <div class='products'></div>
+            </div>
+        
+            <div class='addProducts'>
+            </div>
+
+        </div>
+
+        <script src='/js/cart.js'></script>
+
+    </body>

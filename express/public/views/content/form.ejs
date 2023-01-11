@@ -1,0 +1,24 @@
+
+<h2>Ingreso de productos</h2>
+
+<form id='formulario'>
+    <div class="productStock">
+        <label for="product">Accesorio: </label>
+        <input class='product' type="text" name="product" placeholder="Ingrese producto" required>
+        <label for="price">Precio: </label>
+        <input class="price" type="text" name="price" placeholder="Precio" required>
+        <label for="stock">Stock: </label>
+        <input class="stock" type="text" name="stock" placeholder="Stock" required>
+    </div>
+    <div class="descrip">
+        <label for="description">Descripcion: </label>
+        <input class='description' type="text" name="description" placeholder="Ingrese descripción del producto" required>
+        <label for="code">Codigo: </label>
+        <input class="code" type="text" name="code" placeholder="Código" required>
+    </div>
+    <div class="thumbnails">
+        <label for="thumbnail">Thumbnail: (URL)</label>
+        <input class="thumbnail" type="url" name="thumbnail" placeholder="Ingrese link" required>
+    </div>
+    <button class="sendBtn" type="submit">Agregar</button>
+</form>
